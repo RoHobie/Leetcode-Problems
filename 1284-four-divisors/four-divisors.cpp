@@ -2,24 +2,23 @@ class Solution {
 public:
     int sumFourDivisors(vector<int>& nums) {
         int sum = 0;
-        for(int num : nums){
+        for (int num : nums) {
             int count = 0;
             int currentSum = 0;
-            for(int j = 1; j<=sqrt(num); j++){
-                if( num % j == 0 ){
-                    if(j*j == num){
+            for (int j = 1; j <= sqrt(num); j++) {
+                if (num % j == 0) {
+                    currentSum += j;
+                    if (j * j == num) {
                         count++;
-                        currentSum+=j;
-                    }else{
-                        count+=2;
-                        currentSum += j;
-                        currentSum += num/j;
+                    } else {
+                        count += 2;
+                        currentSum += num / j;
                     }
                 }
             }
-            if(count != 4){
+            if (count != 4) {
                 continue;
-            }else{
+            } else {
                 sum += currentSum;
             }
         }
