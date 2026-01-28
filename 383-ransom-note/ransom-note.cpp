@@ -1,25 +1,25 @@
 class Solution {
 public:
     bool canConstruct(string ransomNote, string magazine) {
-        if(magazine.size()<ransomNote.size()){
+        if (magazine.size() < ransomNote.size()) {
             return false;
         }
         sort(ransomNote.begin(), ransomNote.end());
         sort(magazine.begin(), magazine.end());
-        int left = 0; 
+        int left = 0;
         int right = 0;
-        while(left<ransomNote.size() && right<magazine.size()){
-            if(ransomNote[left]!=magazine[right]){
+        while (left < ransomNote.size() && right < magazine.size()) {
+            if (ransomNote[left] != magazine[right]) {
                 right++;
-            }else{
+            } else {
                 left++;
                 right++;
             }
         }
 
-        if(left==ransomNote.size()){
+        if (left == ransomNote.size()) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
