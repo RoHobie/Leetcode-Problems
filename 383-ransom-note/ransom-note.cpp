@@ -1,26 +1,22 @@
 class Solution {
 public:
     bool canConstruct(string ransomNote, string magazine) {
-        if (magazine.size() < ransomNote.size()) {
+        if(magazine.size()<ransomNote.size()){
             return false;
         }
-        sort(ransomNote.begin(), ransomNote.end());
-        sort(magazine.begin(), magazine.end());
-        int left = 0;
-        int right = 0;
-        while (left < ransomNote.size() && right < magazine.size()) {
-            if (ransomNote[left] != magazine[right]) {
-                right++;
-            } else {
-                left++;
-                right++;
+
+        int freq[26] = {0};
+
+        for(char c : magazine){
+            freq[c - 'a']++;
+        }
+
+        for(char c : ransomNote){
+            if(--freq[c - 'a'] < 0){
+                return false;
             }
         }
 
-        if (left == ransomNote.size()) {
-            return true;
-        } else {
-            return false;
-        }
+        return true;
     }
 };
